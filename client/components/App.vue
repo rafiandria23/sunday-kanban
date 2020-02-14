@@ -45,6 +45,20 @@ export default {
       tasks: []
     };
   },
+  created() {
+    if (localStorage.getItem("token")) {
+      this.isRegister = false;
+      this.isLogin = false;
+      this.isLoggedIn = true;
+      this.showAllCategories();
+      this.showAllTasks();
+    }
+    else {
+      this.isRegister = false;
+      this.isLogin = true;
+      this.isLoggedIn = false;
+    }
+  },
   methods: {
     logout() {
       localStorage.clear();

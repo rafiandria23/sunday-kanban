@@ -10715,14 +10715,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $c9f0c5 = exports.default || module.exports;
+        var $615c09 = exports.default || module.exports;
       
-      if (typeof $c9f0c5 === 'function') {
-        $c9f0c5 = $c9f0c5.options;
+      if (typeof $615c09 === 'function') {
+        $615c09 = $615c09.options;
       }
     
         /* template */
-        Object.assign($c9f0c5, (function () {
+        Object.assign($615c09, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -10748,7 +10748,7 @@ exports.default = _default;
         },
         [
           _c("ul", { staticClass: "navbar-nav mr-auto" }),
-          _vm._v(">\n    "),
+          _vm._v(" "),
           _c(
             "form",
             {
@@ -10806,7 +10806,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-c9f0c5",
+            _scopeId: "data-v-615c09",
             functional: undefined
           };
         })());
@@ -10819,9 +10819,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$c9f0c5', $c9f0c5);
+            api.createRecord('$615c09', $615c09);
           } else {
-            api.reload('$c9f0c5', $c9f0c5);
+            api.reload('$615c09', $615c09);
           }
         }
 
@@ -10922,14 +10922,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $f3e986 = exports.default || module.exports;
+        var $4bb711 = exports.default || module.exports;
       
-      if (typeof $f3e986 === 'function') {
-        $f3e986 = $f3e986.options;
+      if (typeof $4bb711 === 'function') {
+        $4bb711 = $4bb711.options;
       }
     
         /* template */
-        Object.assign($f3e986, (function () {
+        Object.assign($4bb711, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -11077,7 +11077,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-f3e986",
+            _scopeId: "data-v-4bb711",
             functional: undefined
           };
         })());
@@ -11090,9 +11090,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$f3e986', $f3e986);
+            api.createRecord('$4bb711', $4bb711);
           } else {
-            api.reload('$f3e986', $f3e986);
+            api.reload('$4bb711', $4bb711);
           }
         }
 
@@ -11172,14 +11172,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $a9eabf = exports.default || module.exports;
+        var $84344c = exports.default || module.exports;
       
-      if (typeof $a9eabf === 'function') {
-        $a9eabf = $a9eabf.options;
+      if (typeof $84344c === 'function') {
+        $84344c = $84344c.options;
       }
     
         /* template */
-        Object.assign($a9eabf, (function () {
+        Object.assign($84344c, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -11296,7 +11296,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-a9eabf",
+            _scopeId: "data-v-84344c",
             functional: undefined
           };
         })());
@@ -11309,9 +11309,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$a9eabf', $a9eabf);
+            api.createRecord('$84344c', $84344c);
           } else {
-            api.reload('$a9eabf', $a9eabf);
+            api.reload('$84344c', $84344c);
           }
         }
 
@@ -11371,14 +11371,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $774d22 = exports.default || module.exports;
+        var $5ef80e = exports.default || module.exports;
       
-      if (typeof $774d22 === 'function') {
-        $774d22 = $774d22.options;
+      if (typeof $5ef80e === 'function') {
+        $5ef80e = $5ef80e.options;
       }
     
         /* template */
-        Object.assign($774d22, (function () {
+        Object.assign($5ef80e, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -11478,7 +11478,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-774d22",
+            _scopeId: "data-v-5ef80e",
             functional: undefined
           };
         })());
@@ -11491,9 +11491,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$774d22', $774d22);
+            api.createRecord('$5ef80e', $5ef80e);
           } else {
-            api.reload('$774d22', $774d22);
+            api.reload('$5ef80e', $5ef80e);
           }
         }
 
@@ -11555,14 +11555,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $63c947 = exports.default || module.exports;
+        var $a8d655 = exports.default || module.exports;
       
-      if (typeof $63c947 === 'function') {
-        $63c947 = $63c947.options;
+      if (typeof $a8d655 === 'function') {
+        $a8d655 = $a8d655.options;
       }
     
         /* template */
-        Object.assign($63c947, (function () {
+        Object.assign($a8d655, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -11662,7 +11662,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-63c947",
+            _scopeId: "data-v-a8d655",
             functional: undefined
           };
         })());
@@ -11675,9 +11675,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$63c947', $63c947);
+            api.createRecord('$a8d655', $a8d655);
           } else {
-            api.reload('$63c947', $63c947);
+            api.reload('$a8d655', $a8d655);
           }
         }
 
@@ -11768,6 +11768,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
 var baseURL = "http://localhost:3000/api";
 var _default = {
   name: "KanbanContainer",
@@ -11783,6 +11785,36 @@ var _default = {
     };
   },
   methods: {
+    goLeft: function goLeft(cat_id, task_id) {
+      var _this = this;
+
+      (0, _axios.default)({
+        method: "PUT",
+        url: "".concat(baseURL, "/tasks/").concat(cat_id - 1, "/").concat(task_id),
+        headers: {
+          token: localStorage.getItem("token")
+        }
+      }).then(function (result) {
+        _this.$parent.showAllTasks();
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
+    goRight: function goRight(cat_id, task_id) {
+      var _this2 = this;
+
+      (0, _axios.default)({
+        method: "PUT",
+        url: "".concat(baseURL, "/tasks/").concat(cat_id + 1, "/").concat(task_id),
+        headers: {
+          token: localStorage.getItem("token")
+        }
+      }).then(function (result) {
+        _this2.$parent.showAllTasks();
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
     preAddTask: function preAddTask(cat_id) {
       this.isAdding = cat_id;
     },
@@ -11790,7 +11822,7 @@ var _default = {
       this.isAdding = null;
     },
     addTask: function addTask(taskData) {
-      var _this = this;
+      var _this3 = this;
 
       (0, _axios.default)({
         method: "POST",
@@ -11802,9 +11834,9 @@ var _default = {
       }).then(function (result) {
         console.log(result);
 
-        _this.$parent.showAllTasks();
+        _this3.$parent.showAllTasks();
 
-        _this.isAdding = null;
+        _this3.isAdding = null;
       }).then(function (err) {
         console.log(err);
       });
@@ -11815,7 +11847,7 @@ var _default = {
       });
     },
     deleteTask: function deleteTask(cat_id, task_id) {
-      var _this2 = this;
+      var _this4 = this;
 
       (0, _axios.default)({
         method: "DELETE",
@@ -11825,11 +11857,11 @@ var _default = {
         }
       }).then(function (result) {
         // modal here
-        _this2.$parent.showAllCategories();
+        _this4.$parent.showAllCategories();
 
-        _this2.$parent.showAllTasks();
+        _this4.$parent.showAllTasks();
 
-        _this2.isAdding = null;
+        _this4.isAdding = null;
       }).catch(function (err) {
         console.log(err);
       });
@@ -11842,7 +11874,7 @@ var _default = {
       this.isUpdating = task_id;
     },
     updateTask: function updateTask(taskData) {
-      var _this3 = this;
+      var _this5 = this;
 
       (0, _axios.default)({
         method: "PUT",
@@ -11854,9 +11886,9 @@ var _default = {
       }).then(function (result) {
         console.log("THE RESULT ==>", result);
         console.log("THE URL : ", "".concat(baseURL, "/tasks/").concat(taskData.CategoryId, "/").concat(taskData.UserId));
-        _this3.isUpdating = null;
+        _this5.isUpdating = null;
 
-        _this3.$parent.showAllTasks();
+        _this5.$parent.showAllTasks();
       }).catch(function (err) {
         console.log(err);
       });
@@ -11864,14 +11896,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $a0a087 = exports.default || module.exports;
+        var $79a026 = exports.default || module.exports;
       
-      if (typeof $a0a087 === 'function') {
-        $a0a087 = $a0a087.options;
+      if (typeof $79a026 === 'function') {
+        $79a026 = $79a026.options;
       }
     
         /* template */
-        Object.assign($a0a087, (function () {
+        Object.assign($79a026, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -11914,6 +11946,19 @@ exports.default = _default;
                         "div",
                         { staticClass: "kanban-item-footer" },
                         [
+                          task.CategoryId != 1
+                            ? _c("div", {
+                                staticClass: "fas fa-lg fa-arrow-left",
+                                attrs: { type: "button", role: "button" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.goLeft(category.id, task.id)
+                                  }
+                                }
+                              })
+                            : _vm._e(),
+                          _vm._v(" "),
                           _vm.isUpdating != task.id
                             ? _c("div", {
                                 staticClass: "fas fa-pencil-alt",
@@ -11948,6 +11993,19 @@ exports.default = _default;
                                   click: function($event) {
                                     $event.preventDefault()
                                     return _vm.deleteTask(category.id, task.id)
+                                  }
+                                }
+                              })
+                            : _vm._e(),
+                          _vm._v(" "),
+                          task.CategoryId != _vm.categories.length
+                            ? _c("div", {
+                                staticClass: "fas fa-lg fa-arrow-right",
+                                attrs: { type: "button", role: "button" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.goRight(category.id, task.id)
                                   }
                                 }
                               })
@@ -12008,7 +12066,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-a0a087",
+            _scopeId: "data-v-79a026",
             functional: undefined
           };
         })());
@@ -12021,9 +12079,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$a0a087', $a0a087);
+            api.createRecord('$79a026', $79a026);
           } else {
-            api.reload('$a0a087', $a0a087);
+            api.reload('$79a026', $79a026);
           }
         }
 
@@ -12100,6 +12158,19 @@ var _default = {
       categories: [],
       tasks: []
     };
+  },
+  created: function created() {
+    if (localStorage.getItem("token")) {
+      this.isRegister = false;
+      this.isLogin = false;
+      this.isLoggedIn = true;
+      this.showAllCategories();
+      this.showAllTasks();
+    } else {
+      this.isRegister = false;
+      this.isLogin = true;
+      this.isLoggedIn = false;
+    }
   },
   methods: {
     logout: function logout() {
@@ -12207,14 +12278,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $19e71f = exports.default || module.exports;
+        var $8bd62b = exports.default || module.exports;
       
-      if (typeof $19e71f === 'function') {
-        $19e71f = $19e71f.options;
+      if (typeof $8bd62b === 'function') {
+        $8bd62b = $8bd62b.options;
       }
     
         /* template */
-        Object.assign($19e71f, (function () {
+        Object.assign($8bd62b, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -12255,7 +12326,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-19e71f",
+            _scopeId: "data-v-8bd62b",
             functional: undefined
           };
         })());
@@ -12268,9 +12339,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$19e71f', $19e71f);
+            api.createRecord('$8bd62b', $8bd62b);
           } else {
-            api.reload('$19e71f', $19e71f);
+            api.reload('$8bd62b', $8bd62b);
           }
         }
 
@@ -12377,7 +12448,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37183" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46045" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

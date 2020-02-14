@@ -19,6 +19,7 @@
                 <p>{{ task.description }}</p>
               </div>
               <div class="kanban-item-footer">
+                <div v-if="task.CategoryId != 1" type="button" role="button" @click.prevent="goLeft(category.id, task.id)" class="fas fa-lg fa-arrow-left"></div>
                 <div
                   v-if="isUpdating != task.id"
                   role="button"
@@ -39,6 +40,7 @@
                   @click.prevent="deleteTask(category.id, task.id)"
                   class="fas fa-trash-alt"
                 ></div>
+                <div v-if="task.CategoryId != categories.length" type="button" role="button" @click.prevent="goRight(category.id, task.id)" class="fas fa-lg fa-arrow-right"></div>
               </div>
             </div>
           </div>
@@ -83,6 +85,36 @@ export default {
     };
   },
   methods: {
+    goLeft(cat_id, task_id) {
+      axios({
+        method: "PUT",
+        url: `${baseURL}/tasks/${cat_id - 1}/${task_id}`,
+        headers: {
+          token: localStorage.getItem("token")
+        }
+      })
+        .then(result => {
+          this.$parent.showAllTasks();
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    goRight(cat_id, task_id) {
+      axios({
+        method: "PUT",
+        url: `${baseURL}/tasks/${cat_id + 1}/${task_id}`,
+        headers: {
+          token: localStorage.getItem("token")
+        }
+      })
+        .then(result => {
+          this.$parent.showAllTasks();
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
     preAddTask(cat_id) {
       this.isAdding = cat_id;
     },
