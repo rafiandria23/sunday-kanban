@@ -21,7 +21,7 @@
 </template>
 
 <script>
-const baseURL = `http://localhost:3000/api`;
+const baseURL = `https://sunday-kanban.herokuapp.com/api`;
 
 import axios from "axios";
 import Header from "./layout/Header";

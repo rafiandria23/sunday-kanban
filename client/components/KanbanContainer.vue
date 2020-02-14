@@ -69,7 +69,7 @@ import TaskAddForm from "./task/TaskAddForm";
 import axios from "axios";
 import TaskUpdateForm from "./task/TaskUpdateForm";
 
-const baseURL = `http://localhost:3000/api`;
+const baseURL = `https://sunday-kanban.herokuapp.com/api`;
 
 export default {
   name: "KanbanContainer",
