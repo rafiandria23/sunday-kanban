@@ -11103,13 +11103,28 @@ render._withStripped = true
       
       }
     })();
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"components/user/LoginForm.vue":[function(require,module,exports) {
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"node_modules/vue-google-login/dist/vue-google-login.min.js":[function(require,module,exports) {
+var define;
+!function(t,e){"object"==typeof exports&&"undefined"!=typeof module?e(exports):"function"==typeof define&&define.amd?define(["exports"],e):e((t=t||self)["vue-google-login"]={})}(this,function(t){"use strict";var e,n,o=function(t){return e?Promise.resolve(e):(n||(n=function(t){return new Promise(function(n,o){window.onGapiLoad=function(){window.gapi.load("auth2",function(){try{e=window.gapi.auth2.init(Object.assign({},t))}catch(t){o({err:"client_id missing or is incorrect, or if you added extra params maybe they are written incorrectly, did you add it to the component or plugin?"})}n(e)})}})}(t)),n)},i=function(t,e){if(t)return t[e]();return Promise.reject({err:"Script not loaded correctly, did you added the plugin or the client_id to the component?"})},r={load:function(t){return Promise.all([o(t),new Promise(function(t,e){if(!document.getElementById("auth2_script_id")){var n=document.createElement("script");n.setAttribute("src","https://apis.google.com/js/platform.js?onload=onGapiLoad"),n.setAttribute("async",!0),n.setAttribute("defer","defer"),n.setAttribute("id","auth2_script_id"),document.head.appendChild(n)}t()})]).then(function(t){return t[0]})},signIn:function(){return i(e,"signIn")},signOut:function(){return i(e,"signOut")}},s=0;var d=function(t,e,n,o,i,r,s,d,u,a){"boolean"!=typeof s&&(u=d,d=s,s=!1);var c,l="function"==typeof n?n.options:n;if(t&&t.render&&(l.render=t.render,l.staticRenderFns=t.staticRenderFns,l._compiled=!0,i&&(l.functional=!0)),o&&(l._scopeId=o),r?(c=function(t){(t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),e&&e.call(this,u(t)),t&&t._registeredComponents&&t._registeredComponents.add(r)},l._ssrRegister=c):e&&(c=s?function(){e.call(this,a(this.$root.$options.shadowRoot))}:function(t){e.call(this,d(t))}),c)if(l.functional){var f=l.render;l.render=function(t,e){return c.call(e),f(t,e)}}else{var h=l.beforeCreate;l.beforeCreate=h?[].concat(h,c):[c]}return n}({render:function(){var t=this.$createElement,e=this._self._c||t;return this.renderParams&&!this.logoutButton?e("div",{attrs:{id:this.id},on:{click:this.handleClick}}):e("button",{attrs:{id:this.id},on:{click:this.handleClick}},[this._t("default")],2)},staticRenderFns:[]},void 0,{name:"GoogleLogin",props:{params:{type:Object,required:!0},onSuccess:{type:Function,default:function(){}},onFailure:{type:Function,default:function(){}},logoutButton:{type:Boolean,default:!1},renderParams:{type:Object,required:!1}},beforeCreate:function(){this.id="google-signin-btn-".concat(s++)},methods:{handleClick:function(){var t=this,e=this.logoutButton?"signOut":"signIn";r[e]().then(function(e){return t.onSuccess(e)}).catch(function(e){return t.onFailure(e)})}},mounted:function(){var t=this;r.load(this.params).then(function(){t.renderParams&&!1===t.logoutButton&&window.gapi.signin2.render(t.id,t.renderParams)}).catch(function(t){console.log(t)})}},void 0,!1,void 0,void 0,void 0),u={install:function(t,e){t.GoogleAuth=r.load(e)}};t.GoogleLogin=d,t.LoaderPlugin=u,t.default=d,Object.defineProperty(t,"__esModule",{value:!0})});
+
+
+},{}],"components/user/LoginForm.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
+var _vueGoogleLogin = _interopRequireDefault(require("vue-google-login"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
 //
 //
 //
@@ -11148,11 +11163,23 @@ exports.default = void 0;
 //
 var _default = {
   name: "LoginForm",
+  components: {
+    GoogleLogin: _vueGoogleLogin.default
+  },
   data: function data() {
     return {
       userData: {
         user_email: "",
         user_password: ""
+      },
+      params: {
+        client_id: "1067928239045-c1t5b564kplikgj1q93safutfi4lm7bq.apps.googleusercontent.com" // client_secret: "c3bVbN4B_12mjWLy3MmMF8vO"
+
+      },
+      renderParams: {
+        width: 250,
+        height: 50,
+        longtitle: true
       }
     };
   },
@@ -11168,6 +11195,11 @@ var _default = {
     },
     register: function register() {
       this.$emit("register");
+    },
+    googleLogin: function googleLogin(googleUser) {
+      // console.log(googleUser);
+      // console.log(googleUser.getBasicProfile());
+      this.$emit('googleLogin', googleUser);
     }
   }
 };
@@ -11184,110 +11216,123 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "user-container mt-5" }, [
-    _c(
-      "form",
-      {
-        staticClass: "shadow",
-        attrs: { id: "user-form" },
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            return _vm.login($event)
-          }
+  return _c(
+    "div",
+    { staticClass: "user-container mt-5" },
+    [
+      _c("GoogleLogin", {
+        attrs: {
+          params: _vm.params,
+          renderParams: _vm.renderParams,
+          onSuccess: _vm.googleLogin
         }
-      },
-      [
-        _c("h3", [_vm._v("Login")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "user_email" } }, [_vm._v("Email")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.userData.user_email,
-                expression: "userData.user_email"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: {
-              type: "email",
-              id: "user_email",
-              "aria-describedby": "User's Email",
-              placeholder: "johndoe@email.com"
-            },
-            domProps: { value: _vm.userData.user_email },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.userData, "user_email", $event.target.value)
-              }
+      }),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          staticClass: "shadow",
+          attrs: { id: "user-form" },
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.login($event)
             }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "user_password" } }, [
-            _vm._v("Password")
+          }
+        },
+        [
+          _c("h3", [_vm._v("Login")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "user_email" } }, [_vm._v("Email")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.userData.user_email,
+                  expression: "userData.user_email"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "email",
+                id: "user_email",
+                "aria-describedby": "User's Email",
+                placeholder: "johndoe@email.com"
+              },
+              domProps: { value: _vm.userData.user_email },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.userData, "user_email", $event.target.value)
+                }
+              }
+            })
           ]),
           _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.userData.user_password,
-                expression: "userData.user_password"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: {
-              type: "password",
-              id: "user_password",
-              placeholder: "Password"
-            },
-            domProps: { value: _vm.userData.user_password },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "user_password" } }, [
+              _vm._v("Password")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.userData.user_password,
+                  expression: "userData.user_password"
                 }
-                _vm.$set(_vm.userData, "user_password", $event.target.value)
-              }
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          { staticClass: "mt-3 btn btn-primary", attrs: { type: "submit" } },
-          [_vm._v("Login")]
-        ),
-        _vm._v(" "),
-        _c("div", [
-          _vm._v("\n      Don't have an account?\n      "),
-          _c(
-            "a",
-            {
-              attrs: { type: "button" },
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "password",
+                id: "user_password",
+                placeholder: "Password"
+              },
+              domProps: { value: _vm.userData.user_password },
               on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.register($event)
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.userData, "user_password", $event.target.value)
                 }
               }
-            },
-            [_c("b", [_vm._v("Sign Up")])]
-          )
-        ])
-      ]
-    )
-  ])
+            })
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "mt-3 btn btn-primary", attrs: { type: "submit" } },
+            [_vm._v("Login")]
+          ),
+          _vm._v(" "),
+          _c("div", [
+            _vm._v("\n      Don't have an account?\n      "),
+            _c(
+              "a",
+              {
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.register($event)
+                  }
+                }
+              },
+              [_c("b", [_vm._v("Sign Up")])]
+            )
+          ])
+        ]
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -11322,7 +11367,7 @@ render._withStripped = true
       
       }
     })();
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"components/task/TaskAddForm.vue":[function(require,module,exports) {
+},{"vue-google-login":"node_modules/vue-google-login/dist/vue-google-login.min.js","_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"components/task/TaskAddForm.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12141,6 +12186,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
 var baseURL = "http://localhost:3000/api";
 var _default = {
   name: "App",
@@ -12173,11 +12219,47 @@ var _default = {
     }
   },
   methods: {
+    googleLogin: function googleLogin(googleUser) {
+      var _this = this;
+
+      // console.log(googleUser.getAuthResponse().id_token);
+      (0, _axios.default)({
+        method: "POST",
+        url: "".concat(baseURL, "/login/google"),
+        data: {
+          id_token: googleUser.getAuthResponse().id_token
+        }
+      }).then(function (response) {
+        localStorage.setItem("login_way", "google");
+        var token = response.data.token;
+        localStorage.setItem("token", token);
+        _this.isLoggedIn = true;
+        _this.isRegister = false;
+        _this.isLogin = false;
+
+        _this.showAllCategories();
+
+        _this.showAllTasks();
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
     logout: function logout() {
-      localStorage.clear();
-      this.isLoggedIn = false;
-      this.isRegister = false;
-      this.isLogin = true;
+      if (localStorage.getItem("login_way") == "google") {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+          console.log("User signed out.");
+        });
+        localStorage.clear();
+        this.isLoggedIn = false;
+        this.isRegister = false;
+        this.isLogin = true;
+      } else {
+        localStorage.clear();
+        this.isLoggedIn = false;
+        this.isRegister = false;
+        this.isLogin = true;
+      }
     },
     preRegister: function preRegister() {
       this.isLogin = false;
@@ -12208,7 +12290,7 @@ var _default = {
       });
     },
     login: function login(loginData) {
-      var _this = this;
+      var _this2 = this;
 
       var user_email = loginData.user_email,
           user_password = loginData.user_password;
@@ -12221,22 +12303,21 @@ var _default = {
         }
       }).then(function (response) {
         var token = response.data.token;
-        console.log(token);
         localStorage.setItem("token", token);
-        _this.isLoggedIn = true;
-        _this.isRegister = false;
-        _this.isLogin = false;
+        _this2.isLoggedIn = true;
+        _this2.isRegister = false;
+        _this2.isLogin = false;
 
-        _this.showAllCategories();
+        _this2.showAllCategories();
 
-        _this.showAllTasks();
+        _this2.showAllTasks();
       }).catch(function (err) {
         var errMessage = err.response.data.message;
         console.log(errMessage);
       });
     },
     showAllCategories: function showAllCategories() {
-      var _this2 = this;
+      var _this3 = this;
 
       (0, _axios.default)({
         method: "GET",
@@ -12246,14 +12327,14 @@ var _default = {
         }
       }).then(function (response) {
         var categories = response.data.categories;
-        _this2.categories = _toConsumableArray(categories);
+        _this3.categories = _toConsumableArray(categories);
       }).catch(function (err) {
         var errMessage = err.response.data.message;
         console.log(errMessage);
       });
     },
     showAllTasks: function showAllTasks() {
-      var _this3 = this;
+      var _this4 = this;
 
       (0, _axios.default)({
         method: "GET",
@@ -12266,9 +12347,9 @@ var _default = {
         var tasks = response.data.tasks;
 
         if (!tasks) {
-          _this3.tasks = [];
+          _this4.tasks = [];
         } else {
-          _this3.tasks = _toConsumableArray(tasks);
+          _this4.tasks = _toConsumableArray(tasks);
         }
       }).catch(function (err) {
         var errMessage = err.response.data.message;
@@ -12306,7 +12387,11 @@ exports.default = _default;
       _vm._v(" "),
       _vm.isLogin
         ? _c("LoginForm", {
-            on: { login: _vm.login, register: _vm.preRegister }
+            on: {
+              login: _vm.login,
+              googleLogin: _vm.googleLogin,
+              register: _vm.preRegister
+            }
           })
         : _vm._e(),
       _vm._v(" "),
@@ -12448,7 +12533,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46045" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38563" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

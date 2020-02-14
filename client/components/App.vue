@@ -9,6 +9,7 @@
     <LoginForm
       v-if="isLogin"
       @login="login"
+      @googleLogin="googleLogin"
       @register="preRegister"
     ></LoginForm>
     <KanbanContainer
@@ -52,19 +53,53 @@ export default {
       this.isLoggedIn = true;
       this.showAllCategories();
       this.showAllTasks();
-    }
-    else {
+    } else {
       this.isRegister = false;
       this.isLogin = true;
       this.isLoggedIn = false;
     }
   },
   methods: {
+    googleLogin(googleUser) {
+      // console.log(googleUser.getAuthResponse().id_token);
+      axios({
+        method: "POST",
+        url: `${baseURL}/login/google`,
+        data: {
+          id_token: googleUser.getAuthResponse().id_token
+        }
+      })
+        .then(response => {
+          localStorage.setItem("login_way", "google");
+          const token = response.data.token;
+          localStorage.setItem("token", token);
+          this.isLoggedIn = true;
+          this.isRegister = false;
+          this.isLogin = false;
+          this.showAllCategories();
+          this.showAllTasks();
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
     logout() {
-      localStorage.clear();
-      this.isLoggedIn = false;
-      this.isRegister = false;
-      this.isLogin = true;
+      if (localStorage.getItem("login_way") == "google") {
+        const auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function() {
+          console.log("User signed out.");
+        });
+        localStorage.clear();
+        this.isLoggedIn = false;
+        this.isRegister = false;
+        this.isLogin = true;
+      }
+      else {
+        localStorage.clear();
+        this.isLoggedIn = false;
+        this.isRegister = false;
+        this.isLogin = true;
+      }
     },
     preRegister() {
       this.isLogin = false;
@@ -106,7 +141,6 @@ export default {
       })
         .then(response => {
           const token = response.data.token;
-          console.log(token);
           localStorage.setItem("token", token);
           this.isLoggedIn = true;
           this.isRegister = false;

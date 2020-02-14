@@ -1,5 +1,10 @@
 <template>
   <div class="user-container mt-5">
+    <GoogleLogin
+      :params="params"
+      :renderParams="renderParams"
+      :onSuccess="googleLogin"
+    ></GoogleLogin>
     <form @submit.prevent="login" id="user-form" class="shadow">
       <h3>Login</h3>
       <div class="form-group">
@@ -35,13 +40,27 @@
 </template>
 
 <script>
+import GoogleLogin from "vue-google-login";
+
 export default {
   name: "LoginForm",
-  data: function() {
+  components: {
+    GoogleLogin
+  },
+  data() {
     return {
       userData: {
         user_email: "",
         user_password: ""
+      },
+      params: {
+        client_id: "1067928239045-c1t5b564kplikgj1q93safutfi4lm7bq.apps.googleusercontent.com"
+        // client_secret: "c3bVbN4B_12mjWLy3MmMF8vO"
+      },
+      renderParams: {
+        width: 250,
+        height: 50,
+        longtitle: true
       }
     };
   },
@@ -52,10 +71,14 @@ export default {
     },
     register() {
       this.$emit("register");
+    },
+    googleLogin(googleUser) {
+      // console.log(googleUser);
+      // console.log(googleUser.getBasicProfile());
+      this.$emit('googleLogin', googleUser);
     }
   }
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
