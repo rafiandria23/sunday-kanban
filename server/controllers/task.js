@@ -37,8 +37,8 @@ class TaskController {
     Task.create(createData)
       .then(result => {
         const payload = {
-          tasks: result,
-          message: "Successfully created task!"
+          message: "Successfully created task!",
+          tasks: result
         };
         res.status(201).json(payload);
       })

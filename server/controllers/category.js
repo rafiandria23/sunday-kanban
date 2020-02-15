@@ -8,7 +8,7 @@ class CategoryController {
     Category.findAll()
       .then(result => {
         if (!result) {
-          throw createError(404, "Category not found!");
+          throw createError(404, "No categories found!");
         }
         else {
           const payload = {
