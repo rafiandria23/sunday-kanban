@@ -100,8 +100,10 @@ export default {
     }
   },
   mounted() {
-    this.showAllCategories();
-    this.showAllTasks();
+    if (localStorage.getItem("token")) {
+      this.showAllCategories();
+      this.showAllTasks();
+    }
   },
   methods: {
     goLeft(cat_id, task_id) {
