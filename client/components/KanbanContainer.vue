@@ -7,51 +7,68 @@
         class="kanban-category-main shadow bg-white rounded"
       >
         <h4>{{ category.name }}</h4>
-        <div class="kanban-category-container">
-          <div
-            v-for="task in filterTasks(tasks, category.id)"
-            :key="task.id"
-            class="kanban-category-item shadow bg-white rounded"
-          >
-            <div>
-              <div v-if="isUpdating != task.id">
-                <h6>{{ task.name }}</h6>
-                <p>{{ task.description }}</p>
+          <!-- DRAGGABLE -->
+          <draggable class="kanban-category-container" :list="filterTasks(tasks, category.id)" :group="{name: 'categories'}" @end="drop">
+            <transition-group tag="div" :id="category.id">
+              <div
+                v-for="task in filterTasks(tasks, category.id)"
+                :key="task.id"
+                :id="task.id"
+                class="kanban-category-item shadow bg-white rounded"
+              >
+                <div>
+                  <div v-if="isUpdating != task.id">
+                    <h6>{{ task.name }}</h6>
+                    <p>{{ task.description }}</p>
+                  </div>
+                  <div class="kanban-item-footer">
+                    <div
+                      v-if="task.CategoryId != 1 && isUpdating != task.id"
+                      type="button"
+                      role="button"
+                      @click.prevent="goLeft(category.id, task.id)"
+                      class="fas fa-lg fa-arrow-left"
+                    ></div>
+                    <div
+                      v-if="isUpdating != task.id"
+                      role="button"
+                      type="button"
+                      @click.prevent="preUpdateTask(category.id, task.id)"
+                      class="fas fa-pencil-alt"
+                    ></div>
+                    <TaskUpdateForm
+                      :updateData="task"
+                      @updateTask="updateTask"
+                      @cancelUpdateTask="cancelUpdateTask"
+                      v-if="isUpdating == task.id"
+                    ></TaskUpdateForm>
+                    <div
+                      v-if="isUpdating != task.id"
+                      role="button"
+                      type="button"
+                      @click.prevent="deleteTask(category.id, task.id)"
+                      class="fas fa-trash-alt"
+                    ></div>
+                    <div
+                      v-if="task.CategoryId != categories.length && isUpdating != task.id"
+                      type="button"
+                      role="button"
+                      @click.prevent="goRight(category.id, task.id)"
+                      class="fas fa-lg fa-arrow-right"
+                    ></div>
+                  </div>
+                </div>
               </div>
-              <div class="kanban-item-footer">
-                <div v-if="task.CategoryId != 1" type="button" role="button" @click.prevent="goLeft(category.id, task.id)" class="fas fa-lg fa-arrow-left"></div>
-                <div
-                  v-if="isUpdating != task.id"
-                  role="button"
-                  type="button"
-                  @click.prevent="preUpdateTask(category.id, task.id)"
-                  class="fas fa-pencil-alt"
-                ></div>
-                <TaskUpdateForm
-                  :updateData="task"
-                  @updateTask="updateTask"
-                  @cancelUpdateTask="cancelUpdateTask"
-                  v-if="isUpdating == task.id"
-                ></TaskUpdateForm>
-                <div
-                  v-if="isUpdating != task.id"
-                  role="button"
-                  type="button"
-                  @click.prevent="deleteTask(category.id, task.id)"
-                  class="fas fa-trash-alt"
-                ></div>
-                <div v-if="task.CategoryId != categories.length" type="button" role="button" @click.prevent="goRight(category.id, task.id)" class="fas fa-lg fa-arrow-right"></div>
-              </div>
-            </div>
-          </div>
-        </div>
+            </transition-group>
+          </draggable>
+          <!-- DRAGGABLE -->
         <div class="kanban-category-main-footer">
           <div
             type="button"
             v-if="isAdding == null"
             @click="preAddTask(category.id)"
             class="add-button fas fa-lg fa-plus-circle"
-          >Add card...</div>
+          >&emsp;Add card...</div>
           <TaskAddForm
             :CategoryId="category.id"
             @addTask="addTask"
@@ -68,6 +85,7 @@
 import TaskAddForm from "./task/TaskAddForm";
 import axios from "axios";
 import TaskUpdateForm from "./task/TaskUpdateForm";
+import draggable from "vuedraggable";
 
 // Development
 // const baseURL = `http://localhost:3000/api`;
@@ -80,7 +98,8 @@ export default {
   props: ["isLoggedIn"],
   components: {
     TaskAddForm,
-    TaskUpdateForm
+    TaskUpdateForm,
+    draggable
   },
   data() {
     return {
@@ -106,6 +125,25 @@ export default {
     }
   },
   methods: {
+    drop(e) {
+      const task_id = e.item.id;
+      const cat_id = e.to.id;
+      if (e.from.id != e.to.id) {
+        axios({
+          method: "PUT",
+          url: `${baseURL}/tasks/${cat_id}/${task_id}`,
+          headers: {
+            token: localStorage.getItem("token")
+          }
+        })
+          .then(result => {
+            console.log(result);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      }
+    },
     goLeft(cat_id, task_id) {
       axios({
         method: "PUT",

@@ -44,12 +44,16 @@ $default-border-radius: 8px;
     padding: $default-padding;
     margin: $default-margin;
   }
+
+  .kanban-item-footer {
+    display: flex;
+    justify-content: space-evenly;
+  }
 }
 
 
 .kanban-category-container {
   overflow: auto;
-  max-width: fit-content;
   max-height: 600px;
 }
 

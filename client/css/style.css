@@ -45,10 +45,13 @@ body {
   padding: 10px;
   margin: 10px;
 }
+.kanban-container .kanban-item-footer {
+  display: flex;
+  justify-content: space-evenly;
+}
 
 .kanban-category-container {
   overflow: auto;
-  max-width: fit-content;
   max-height: 600px;
 }
 
