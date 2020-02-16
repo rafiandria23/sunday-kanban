@@ -18,7 +18,6 @@ class TaskController {
           const payload = {
             tasks: result
           };
-          req.io.emit("reload");
           res.status(200).json(payload);
         }
       })
