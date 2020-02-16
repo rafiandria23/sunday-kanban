@@ -14,6 +14,7 @@ class CategoryController {
           const payload = {
             categories: result
           };
+          req.io.emit("reload");
           res.status(200).json(payload);
         }
       })

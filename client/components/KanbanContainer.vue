@@ -1,5 +1,5 @@
 <template>
-  <div class="main-container">
+  <div v-if="isLoggedIn" class="main-container">
     <div id="kanban" class="kanban-container mt-5">
       <div
         v-for="(category, idx) in categories"
@@ -69,20 +69,39 @@ import TaskAddForm from "./task/TaskAddForm";
 import axios from "axios";
 import TaskUpdateForm from "./task/TaskUpdateForm";
 
-const baseURL = `https://sunday-kanban.herokuapp.com/api`;
+// Development
+const baseURL = `http://localhost:3000/api`;
+
+// Production
+// const baseURL = `https://sunday-kanban.herokuapp.com/api`;
 
 export default {
   name: "KanbanContainer",
-  props: ["categories", "tasks"],
+  props: ["isLoggedIn"],
   components: {
     TaskAddForm,
     TaskUpdateForm
   },
   data() {
     return {
+      categories: [],
+      tasks: [],
       isAdding: null,
       isUpdating: null
     };
+  },
+  sockets: {
+    connect() {
+      console.log(`Socket is connected!`);
+    },
+    reload(data) {
+      this.showAllCategories();
+      this.showAllTasks();
+    }
+  },
+  mounted() {
+    this.showAllCategories();
+    this.showAllTasks();
   },
   methods: {
     goLeft(cat_id, task_id) {
@@ -187,6 +206,45 @@ export default {
         })
         .catch(err => {
           console.log(err);
+        });
+    },
+    showAllCategories() {
+      axios({
+        method: "GET",
+        url: `${baseURL}/categories`,
+        headers: {
+          token: localStorage.getItem("token")
+        }
+      })
+        .then(response => {
+          const categories = response.data.categories;
+          this.categories = [...categories];
+        })
+        .catch(err => {
+          const errMessage = err.response.data.message;
+          console.log(errMessage);
+        });
+    },
+    showAllTasks() {
+      axios({
+        method: "GET",
+        url: `${baseURL}/tasks`,
+        headers: {
+          token: localStorage.getItem("token")
+        }
+      })
+        .then(response => {
+          // console.log(response);
+          const tasks = response.data.tasks;
+          if (!tasks) {
+            this.tasks = [];
+          } else {
+            this.tasks = [...tasks];
+          }
+        })
+        .catch(err => {
+          const errMessage = err.response.data.message;
+          console.log(errMessage);
         });
     }
   }

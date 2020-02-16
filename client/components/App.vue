@@ -1,27 +1,18 @@
 <template>
   <div>
     <Header :isLoggedIn="isLoggedIn" @logout="logout"></Header>
-    <RegisterForm
-      v-if="isRegister"
-      @register="register"
-      @login="preLogin"
-    ></RegisterForm>
-    <LoginForm
-      v-if="isLogin"
-      @login="login"
-      @googleLogin="googleLogin"
-      @register="preRegister"
-    ></LoginForm>
-    <KanbanContainer
-      :categories="categories"
-      :tasks="tasks"
-      v-if="isLoggedIn"
-    ></KanbanContainer>
+    <RegisterForm v-if="isRegister" @register="register" @login="preLogin"></RegisterForm>
+    <LoginForm v-if="isLogin" @login="login" @googleLogin="googleLogin" @register="preRegister"></LoginForm>
+    <KanbanContainer :isLoggedIn="isLoggedIn"></KanbanContainer>
   </div>
 </template>
 
 <script>
-const baseURL = `https://sunday-kanban.herokuapp.com/api`;
+// Development
+const baseURL = `http://localhost:3000/api`;
+
+// Production
+// const baseURL = `https://sunday-kanban.herokuapp.com/api`;
 
 import axios from "axios";
 import Header from "./layout/Header";
@@ -41,18 +32,14 @@ export default {
     return {
       isRegister: false,
       isLogin: true,
-      isLoggedIn: false,
-      categories: [],
-      tasks: []
+      isLoggedIn: false
     };
   },
-  created() {
+  mounted() {
     if (localStorage.getItem("token")) {
       this.isRegister = false;
       this.isLogin = false;
       this.isLoggedIn = true;
-      this.showAllCategories();
-      this.showAllTasks();
     } else {
       this.isRegister = false;
       this.isLogin = true;
@@ -93,8 +80,7 @@ export default {
         this.isLoggedIn = false;
         this.isRegister = false;
         this.isLogin = true;
-      }
-      else {
+      } else {
         localStorage.clear();
         this.isLoggedIn = false;
         this.isRegister = false;
@@ -147,45 +133,6 @@ export default {
           this.isLogin = false;
           this.showAllCategories();
           this.showAllTasks();
-        })
-        .catch(err => {
-          const errMessage = err.response.data.message;
-          console.log(errMessage);
-        });
-    },
-    showAllCategories() {
-      axios({
-        method: "GET",
-        url: `${baseURL}/categories`,
-        headers: {
-          token: localStorage.getItem("token")
-        }
-      })
-        .then(response => {
-          const categories = response.data.categories;
-          this.categories = [...categories];
-        })
-        .catch(err => {
-          const errMessage = err.response.data.message;
-          console.log(errMessage);
-        });
-    },
-    showAllTasks() {
-      axios({
-        method: "GET",
-        url: `${baseURL}/tasks`,
-        headers: {
-          token: localStorage.getItem("token")
-        }
-      })
-        .then(response => {
-          console.log(response);
-          const tasks = response.data.tasks;
-          if (!tasks) {
-            this.tasks = [];
-          } else {
-            this.tasks = [...tasks];
-          }
         })
         .catch(err => {
           const errMessage = err.response.data.message;

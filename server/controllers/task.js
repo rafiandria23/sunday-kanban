@@ -18,6 +18,7 @@ class TaskController {
           const payload = {
             tasks: result
           };
+          req.io.emit("reload");
           res.status(200).json(payload);
         }
       })
@@ -40,6 +41,7 @@ class TaskController {
           message: "Successfully created task!",
           tasks: result
         };
+        req.io.emit("reload");
         res.status(201).json(payload);
       })
       .catch(err => {
@@ -71,13 +73,16 @@ class TaskController {
           message: "Successfully updated task!",
           tasks: updateData
         };
+        req.io.emit("reload");
         res.status(200).json(result);
       })
       .catch(err => {
-        if (typeof err.message != "undefined" && err.message.includes("ValidationError:")) {
+        if (
+          typeof err.message != "undefined" &&
+          err.message.includes("ValidationError:")
+        ) {
           next(createError(400, err.message));
-        }
-        else {
+        } else {
           next(err);
         }
       });
@@ -91,6 +96,7 @@ class TaskController {
         const payload = {
           message: "Successfully deleted task!"
         };
+        req.io.emit("reload");
         res.status(200).json(payload);
       })
       .catch(err => {
