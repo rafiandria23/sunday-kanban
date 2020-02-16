@@ -152,11 +152,11 @@ export default {
         data: taskData
       })
         .then(result => {
-          console.log(result);
+          // console.log(result);
           this.isAdding = null;
         })
         .then(err => {
-          console.log(err);
+          // console.log(err);
         });
     },
     filterTasks(params, id) {
