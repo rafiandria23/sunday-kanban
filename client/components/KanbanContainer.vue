@@ -70,10 +70,10 @@ import axios from "axios";
 import TaskUpdateForm from "./task/TaskUpdateForm";
 
 // Development
-const baseURL = `http://localhost:3000/api`;
+// const baseURL = `http://localhost:3000/api`;
 
 // Production
-// const baseURL = `https://sunday-kanban.herokuapp.com/api`;
+const baseURL = `https://sunday-kanban.herokuapp.com/api`;
 
 export default {
   name: "KanbanContainer",
@@ -113,7 +113,7 @@ export default {
         }
       })
         .then(result => {
-          this.$parent.showAllTasks();
+          console.log(result);
         })
         .catch(err => {
           console.log(err);
@@ -128,7 +128,7 @@ export default {
         }
       })
         .then(result => {
-          this.$parent.showAllTasks();
+          console.log(result);
         })
         .catch(err => {
           console.log(err);
@@ -151,7 +151,6 @@ export default {
       })
         .then(result => {
           console.log(result);
-          this.$parent.showAllTasks();
           this.isAdding = null;
         })
         .then(err => {
@@ -170,9 +169,7 @@ export default {
         }
       })
         .then(result => {
-          // modal here
-          this.$parent.showAllCategories();
-          this.$parent.showAllTasks();
+          console.log(result);
           this.isAdding = null;
         })
         .catch(err => {
@@ -196,13 +193,8 @@ export default {
         data: taskData
       })
         .then(result => {
-          console.log("THE RESULT ==>", result);
-          console.log(
-            "THE URL : ",
-            `${baseURL}/tasks/${taskData.CategoryId}/${taskData.UserId}`
-          );
+          console.log(result);
           this.isUpdating = null;
-          this.$parent.showAllTasks();
         })
         .catch(err => {
           console.log(err);
@@ -234,7 +226,6 @@ export default {
         }
       })
         .then(response => {
-          // console.log(response);
           const tasks = response.data.tasks;
           if (!tasks) {
             this.tasks = [];

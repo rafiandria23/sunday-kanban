@@ -4,10 +4,10 @@ import io from "socket.io-client";
 import VueSocketIOExt from "vue-socket.io-extended";
 
 // Development
-const socket = io("http://localhost:3000");
+// const socket = io("http://localhost:3000");
 
 // Production
-// const socket = io("https://sunday-kanban.herokuapp.com/api");
+const socket = io("https://sunday-kanban.herokuapp.com");
 
 Vue.use(VueSocketIOExt, socket);
 

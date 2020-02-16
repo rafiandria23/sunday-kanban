@@ -9,10 +9,10 @@
 
 <script>
 // Development
-const baseURL = `http://localhost:3000/api`;
+// const baseURL = `http://localhost:3000/api`;
 
 // Production
-// const baseURL = `https://sunday-kanban.herokuapp.com/api`;
+const baseURL = `https://sunday-kanban.herokuapp.com/api`;
 
 import axios from "axios";
 import Header from "./layout/Header";
@@ -63,8 +63,6 @@ export default {
           this.isLoggedIn = true;
           this.isRegister = false;
           this.isLogin = false;
-          this.showAllCategories();
-          this.showAllTasks();
         })
         .catch(err => {
           console.log(err);
@@ -131,8 +129,6 @@ export default {
           this.isLoggedIn = true;
           this.isRegister = false;
           this.isLogin = false;
-          this.showAllCategories();
-          this.showAllTasks();
         })
         .catch(err => {
           const errMessage = err.response.data.message;
