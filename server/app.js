@@ -9,9 +9,9 @@ const app = express();
 const port = process.env.PORT || 3000;
 const cors = require("cors");
 const server = require("http").Server(app);
-const io = require("socket.io", {
-  transports: ['websocket']
-})(server);
+const io = require("socket.io")(server, {
+  transports: ["websocket"]
+});
 
 const indexRouter = require("./routes/index");
 const errorHandler = require("./middlewares/error-handler");
