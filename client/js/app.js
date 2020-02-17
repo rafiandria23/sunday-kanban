@@ -7,7 +7,10 @@ import VueSocketIOExt from "vue-socket.io-extended";
 // const socket = io("http://localhost:3000");
 
 // Production
-const socket = io("https://sunday-kanban.herokuapp.com");
+const socket = io("https://sunday-kanban.herokuapp.com", {
+  rememberTransport: false,
+  transports: ["WebSocket", "Flash Socket", "AJAX long polling"]
+});
 
 Vue.use(VueSocketIOExt, socket);
 
