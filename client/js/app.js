@@ -8,8 +8,7 @@ import VueSocketIOExt from "vue-socket.io-extended";
 
 // Production
 const socket = io("https://sunday-kanban.herokuapp.com", {
-  rememberTransport: false,
-  transports: ["WebSocket", "Flash Socket", "AJAX long polling"]
+  transports: ['websocket']
 });
 
 Vue.use(VueSocketIOExt, socket);

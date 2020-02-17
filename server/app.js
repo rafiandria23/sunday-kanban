@@ -10,8 +10,7 @@ const port = process.env.PORT || 3000;
 const cors = require("cors");
 const server = require("http").Server(app);
 const io = require("socket.io", {
-  rememberTransport: false,
-  transports: ["WebSocket", "Flash Socket", "AJAX long polling"]
+  transports: ['websocket']
 })(server);
 
 const indexRouter = require("./routes/index");
